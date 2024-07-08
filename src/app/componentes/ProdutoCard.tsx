@@ -6,7 +6,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { Card, CardBody, Image, CardFooter, Link } from "@nextui-org/react";
 
 
-import { Box } from "@mui/material";
 import IMaterial from "@/interfaces/IMaterial";
 
 interface ProdutoCardProps {
@@ -33,7 +32,7 @@ export default function ({produto}) {
               <div
                 className="image-container relative"
                 style={{
-                  height: '400px',
+                  height: '200px',
                   width: '100%',
                   overflow: 'hidden',
                 }}

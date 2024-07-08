@@ -4,25 +4,21 @@ import { getAllMateriais } from "@/app/services/Material.Services";
 import IMaterial from "@/interfaces/IMaterial";
 import Slider from "react-slick";
 import { useEffect, useState } from "react";
-import Image from "next/image";
+import { Image } from "@nextui-org/react";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 export default function CarroselProdutosShowcase() {
   const [materiais, setMateriais] = useState<IMaterial[]>([]);
   const [isClient, setIsClient] = useState(false);
+  const imagens = ["/src/app/assets/773203414-frutas-e1701802035802.png","/src/app/assets/frutas_da_estacao_ypedia-scaled-1698513255.jpg","/src/app/assets/pera-frutas-de-marco.jpg"]
 
   useEffect(() => {
     setIsClient(true);
-    handleMateriais();
+   
   }, []);
 
-  const handleMateriais = async () => {
-    let materiaisWithUrl = [];
-    const materiais = await getAllMateriais();
-    setMateriais(materiais)
 
-  };
 
   const settings = {
     dots: true,
@@ -40,21 +36,16 @@ export default function CarroselProdutosShowcase() {
   <>
  
       <Slider {...settings}>
-        { materiais.map((material) => (
-          <div key={material.id}>
-            <p>{material.descricao}</p>
-            {material.urlImage !=null && (
+      
+          <div >
+        
+           
 
-            <Image
-              src={material.urlImage}
-              alt={`Imagem de ${material.descricao}`}
-              width={80}
-              height={80}
-              className="cursor-pointer"
-            />
-            )}
+          <Image  className="py-5 hover:scale-30 max-sm:mt-1 max-sm:w-[100px] max-sm:h-[80px] w-full h-full" src={require('../assets/IMG-20240708-WA0003.jpg')}alt="logo master" />
+
+            
           </div>
-        ))}
+       
       </Slider>
       </>
   );
