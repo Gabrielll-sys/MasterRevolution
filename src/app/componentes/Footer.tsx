@@ -1,6 +1,7 @@
 "use client";
 
 import IconInstagram from "../assets/icons/IconInstagram";
+import IconWhatsapp from "../assets/icons/IconWhatsapp";
 import IconLinkedin from "./IconLinkedin";
 
 export default function Footer({ children, ...props }: any) {
@@ -41,6 +42,9 @@ Atuamos também com adequação de segurança NR-10 e NR-12 e ao longo destes an
           </a>
           <a href="https://www.linkedin.com/company/master-el%C3%A9trica-mg/" target="_blank">
             <IconLinkedin width={"2.5em"} height={"2.5em"}/>
+          </a>
+          <a href="https://api.whatsapp.com/send?phone=71103718&text=Bom Dia" target="_blank">
+            <IconWhatsapp width={"2.5em"} height={"2.5em"}/>
           </a>
           </div>
 

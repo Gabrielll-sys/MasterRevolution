@@ -1,13 +1,12 @@
 'use client';
 
-import { getAllMateriais } from "@/app/services/Material.Services";
 import IMaterial from "@/interfaces/IMaterial";
-import Slider from "react-slick";
-import { useEffect, useState } from "react";
 import { Image } from "@nextui-org/react";
+import { useEffect, useState } from "react";
+import Slider from "react-slick";
 
-import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 export default function CarroselProdutosShowcase() {
   const [materiais, setMateriais] = useState<IMaterial[]>([]);
   const [isClient, setIsClient] = useState(false);

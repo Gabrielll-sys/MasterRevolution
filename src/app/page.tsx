@@ -1,8 +1,9 @@
 'use client'
 
+import { Switch } from "@radix-ui/themes"
 import Banner from "./componentes/Banner"
 import CarroselProdutosShowcase from "./componentes/CarroselProdutosShowcase"
-import LPGrid from "./componentes/LPGrid"
+import LPGrid from "./componentes/PresentationGrid"
 import PresentationGrid from "./componentes/PresentationGrid"
 
 export default function Home() {
@@ -11,7 +12,7 @@ export default function Home() {
 
         <PresentationGrid/>
       <CarroselProdutosShowcase/>
-      <Banner/>
+  
 
     </div>
 

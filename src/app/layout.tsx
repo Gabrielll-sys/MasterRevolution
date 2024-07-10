@@ -7,7 +7,7 @@ import './globals.css';
 import SendWhatsAppMessage from './componentes/SendWhatsAppMessage';
 import Header from './componentes/Header';
 import Footer from './componentes/Footer';
-
+import { Theme } from '@radix-ui/themes';
 const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -26,29 +26,31 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body className='min-h-screen  ' suppressHydrationWarning={true}>
-        <Providers>
-        <Script
-              strategy="lazyOnload"
-              src={`https://www.googletagmanager.com/gtag/js?id=G-19VJCQS2H4`}
-            />
-            <Script strategy="lazyOnload" id="gtag-script">
-              {`
-                      window.dataLayer = window.dataLayer || [];
-                      function gtag(){dataLayer.push(arguments);}
-                      gtag('js', new Date());
-                      gtag('config', 'G-19VJCQS2H4', {
-                      page_path: window.location.pathname,
-                      });
-                  `}
-            </Script>
-        
-        <div className='min-h-screen overflow-x-hidden'>
-        <Header/>
-               {children}
-        <SendWhatsAppMessage/>
-        </div>
-        <Footer/>
-        </Providers>
+        <Theme>
+          <Providers>
+          <Script
+                strategy="lazyOnload"
+                src={`https://www.googletagmanager.com/gtag/js?id=G-19VJCQS2H4`}
+              />
+              <Script strategy="lazyOnload" id="gtag-script">
+                {`
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-19VJCQS2H4', {
+                        page_path: window.location.pathname,
+                        });
+                    `}
+              </Script>
+          
+          <div className='min-h-screen overflow-x-hidden'>
+          <Header/>
+                 {children}
+          <SendWhatsAppMessage/>
+          </div>
+          <Footer/>
+          </Providers>
+        </Theme>
  
       </body>
     </html>
