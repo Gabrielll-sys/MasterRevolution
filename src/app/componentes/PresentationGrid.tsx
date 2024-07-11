@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Button, Image } from "@nextui-org/react";
-
+import { Button } from "@nextui-org/react";
+import Image from "next/image";
+ import cabovermelho from "../assets/imagem-cabo-vermelho.jpg"
 import Link from "next/link";
 
 const images = [
@@ -9,36 +10,8 @@ const images = [
 ];
 
 const PresentationGrid = () => {
-  const [randomImage1, setRandomImage1] = useState("");
-  const [randomImage2, setRandomImage2] = useState("");
-  const [randomImage3, setRandomImage3] = useState("");
-  const [randomImage4, setRandomImage4] = useState("");
 
-  useEffect(() => {
-    const generateRandomImage = () => {
-      const getRandomImage = () => {
-        const randomIndex = Math.floor(Math.random() * images.length);
-        return images[randomIndex];
-      };
-
-      let image1, image2, image3, image4;
-
-      // Ensure that the images are different
-      do {
-        image1 = getRandomImage();
-        image2 = getRandomImage();
-        image3 = getRandomImage();
-        image4 = getRandomImage();
-      } while (image1 === image2 || image1 === image3 || image1 === image4 || image2 === image3 || image2 === image4 || image3 === image4);
-
-      setRandomImage1(image1);
-      setRandomImage2(image2);
-      setRandomImage3(image3);
-      setRandomImage4(image4);
-    };
-
-    generateRandomImage();
-  }, []); 
+ 
   
   return (
     <div className="bg-black">
@@ -71,11 +44,14 @@ const PresentationGrid = () => {
               position: "relative",
             }}
           >
-            <Image
-              src={`/src/app/assets/${randomImage1}`}
-              className={`z-0 w-full h-full object-cover`}
-              style={{ maxWidth: "100%", maxHeight: "100%", objectFit: 'cover' }}
-            />
+              <Image
+                     width={80}
+                     height={80}
+                      alt="Card background"
+                      className={`z-0 w-full h-full object-cover transition-transform `}
+                      src={cabovermelho}
+                    />
+ 
           </div>
         </div>
         <div
@@ -106,10 +82,13 @@ const PresentationGrid = () => {
               position: "relative",
             }}
           >
-            <Image
-              src={`/Chita/${randomImage2}`}
-              style={{ maxWidth: "100%", maxHeight: "100%", objectFit: 'cover' }}
-            />
+           <Image
+                     width={80}
+                     height={80}
+                      alt="Card background"
+                      className={`z-0 w-full h-full object-cover transition-transform `}
+                      src={cabovermelho}
+                    />
           </div>
         </div>
        
@@ -126,10 +105,13 @@ const PresentationGrid = () => {
               position: "relative",
             }}
           >
-            <Image
-              src={`/Chita/${randomImage3}`}
-              style={{ maxWidth: "100%", maxHeight: "100%", objectFit: 'cover' }}
-            />
+           <Image
+                     width={80}
+                     height={80}
+                      alt="Card background"
+                      className={`z-0 w-full h-full object-cover transition-transform `}
+                      src={cabovermelho}
+                    />
           </div>
         </div>
 
@@ -162,9 +144,12 @@ const PresentationGrid = () => {
             }}
           >
             <Image
-              src={`/Chita/${randomImage4}`}
-              style={{ maxWidth: "100%", maxHeight: "100%", objectFit: 'cover' }}
-            />
+                     width={40}
+                     height={40}
+                      alt="Card background"
+                      className={`z-0 w-[50%] h-[50%]  transition-transform `}
+                      src={cabovermelho}
+                    />
           </div>
         </div>
 
