@@ -35,7 +35,8 @@ const config: Config = {
         grayLine: '#dfe3e8',
       },
       fontFamily: {
-        sans: ['Roboto', 'Sans-serif'],
+      roboto: ['Roboto', 'Sans-serif'],
+      quicksand:['Quicksand','Sans-serif']
       },
     },
   },
