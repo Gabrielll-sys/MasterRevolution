@@ -11,7 +11,8 @@ export default function Home() {
     <div>
 
         <PresentationGrid/>
-      <CarroselProdutosShowcase/>
+        <Banner/>
+      {/* <CarroselProdutosShowcase/> */}
   
 
     </div>

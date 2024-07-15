@@ -3,26 +3,26 @@
 
 import React, { useContext, useEffect, useState } from "react";
 
-import { Card, CardBody, Image, CardFooter, Link } from "@nextui-org/react";
-
-
-import IMaterial from "@/interfaces/IMaterial";
+import { Card, CardBody ,CardFooter, Link } from "@nextui-org/react";
+import Image from "next/image";
+import imagem from "../assets/disjuntor-bipolar.jpg"
+import IProduto from "@/interfaces/IProduto";
 
 interface ProdutoCardProps {
-  produto:IMaterial[]
+  produto:IProduto
 }
 
 
-export default function ({produto}) {
+export default function ({produto}:ProdutoCardProps) {
 
   return (
     <>
-<div className="flex flex-wrap gap-10 justify-between">
+<div className="flex flex-wrap gap-2 justify-between border-1 border-black rounded-md shadow-sm shadow-black">
       
-        <div  className="flex">
+    
           {/* Card itens */}
           <Card
-            className="flex-wrap font-open bg-light"
+            className="flex-wrap font-open bg-light p-3"
             isPressable
             shadow="none"
         
@@ -32,40 +32,44 @@ export default function ({produto}) {
               <div
                 className="image-container relative"
                 style={{
-                  height: '200px',
+                  height: '300px',
                   width: '100%',
                   overflow: 'hidden',
                 }}
               >
                 <Image
-                      isZoomed
-                      removeWrapper
+                     
+                      
                       alt="Card background"
-                      className={`z-0 w-full h-full object-cover transition-transform `}
-                      src={produto?.urlImage}
+                      className={`z-0  transition-transform `}
+                      src={imagem}
                     />
  
-                      <div className="overlay absolute top-0 left-0 w-full h-full text-white flex flex-col items-center justify-center pointer-events-none">
-                        <p className="text-small p-4">{`${produto?.descricao}`}</p>
+                      {/* <div className="overlay absolute top-0 left-0 w-full h-full text-white flex flex-col items-center justify-center pointer-events-none">
+                        <p className="text-small p-4">{produto?.descricao} - {produto.marca}</p>
                         <p className="text-small">{`Peso: ${produto?.marca} kg`}</p>
                       </div>
-                 
+                  */}
             </div>
               <CardFooter className="px-0">
-                <div className="flex justify-between w-full">
-                  <div>
-                    <p className=" w-full">{produto?.descricao}</p>
+                <div className="flex flex-col  justify-center items-center  gap-4">
+                  
+                    <p className=" w-full text-center">{produto?.descricao} - {produto.marca}</p>
+                    { produto.precoVenda !=null ?
+                      <p className="font-semibold text-center text-green font-quicksand text-2xl">R${ produto?.precoVenda.toFixed(2).toString().replace('.',',')}</p>
+                      :
+                      <p className="font-semibold text-center text-green font-quicksand text-2xl"> R$0,00</p>
+
+                    }
                     
-                    {/* <p className="font-semibold">R$ {produto?.precoVenda.toFixed(2).toString().replace('.',',')}</p> */}
-                  </div>
-                
+              
                  
                 </div>
               </CardFooter>
             </CardBody>
           </Card>
 
-        </div>
+       
     
  
     </div>

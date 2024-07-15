@@ -1,4 +1,4 @@
-export default interface IMaterial {
+export default interface IProduto {
 id?:number,
 categoria: string
 codigoFabricante: string
@@ -9,7 +9,7 @@ localizacao: string,
 marca: string,
 markup?: string| number | null ,
 precoCusto?: number | string,
-precoVenda?: number | string,
+precoVenda?: number,
 tensao: string,
 unidade: string,
 urlImage?:string | null,

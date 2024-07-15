@@ -9,7 +9,9 @@ import Image, { StaticImageData } from "next/image";
  import eletrocalhaPerfurada from "../assets/eletrocalha-perfurada.jpg"
  import eletrodutoGalvanizado from "../assets/eletroduto-galvanizado.jpg"
  import condulete from "../assets/imagem-condulete.jpg"
- 
+ import caixaPassagem from "../assets/imagem-caixa-passagem.png"
+ import tampaParaTomadaParaConduleteRedonda from "../assets/imagem-tampa-para-tomada-para-condulete-redonda.jpg"
+ import sealtubo from "../assets/imagem-sealtubo.jpg"
 import Link from "next/link";
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css"; 
@@ -28,6 +30,9 @@ const imagensInfraestrutura :StaticImageData[]= [
   eletrocalhaPerfurada,
   eletrodutoGalvanizado,
   condulete,
+  caixaPassagem,
+  sealtubo,
+  tampaParaTomadaParaConduleteRedonda
 ];
 const PresentationGrid = () => {
   
@@ -45,16 +50,16 @@ const PresentationGrid = () => {
   return (
     <>
     
-    <div className="bg-black">
+    <div className="mt-5">
       <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-4">
         {/* First row */}
         <div
-          className="grid-box bg-white flex items-center justify-center order-1"
+          className="grid-box bg-white flex items-center justify-center order-1 border-1 border-cardbg_color rounded-md"
           style={{ height: "250px" }}
         >
-          <div className="elements text-left p-20">
-            <p className="uppercase sm:text-base lg:text-lg">Cabos</p>
-            <p className="2xl:py-8 font-light text-2xl">Cabos de alta qualidade com diversas cores e uma GRANDE variedade de tamanhos.</p>
+          <div className="elements text-left p-12">
+            <p className="uppercase sm:text-base lg:text-lg ">Cabos</p>
+            <p className="2xl:py-8 font-light text-2xl  ">Cabos de alta qualidade com diversas cores e uma GRANDE variedade de tamanhos.Vendemos no ROLO e por METRO</p>
             
           </div>
         </div>
@@ -76,17 +81,17 @@ const PresentationGrid = () => {
             
 
 
-            <Slider {...settings}>
+            <Slider {...settings} className="object-cover">
             {imagensCabos.map((imagem)=>(
 
               <Image
                       
-                       width={200}
-                       height={200}
+                       width={100}
+                       height={100}
                        quality={100}
-                       objectFit="cover"
+                        objectFit="cover"
                        alt="Card background"
-                        className={` transition-transform `}
+                        className="transition-transform object-cover rounded-md "
                         src={imagem}
                       />
           
@@ -99,12 +104,12 @@ const PresentationGrid = () => {
     
         </div>
         <div
-          className="grid-box bg-white flex items-center justify-center order-3"
+          className="grid-box bg-white flex items-center justify-center order-3 border-1 border-black rounded-md"
           style={{ height: "250px" }}
         >
           <div className="elements text-left p-10">
-          <p className="uppercase text-lg font-quicksand">Disjuntores</p>
-          <p className="2xl:py-8 font-light text-2xl">Uma Vasta Gama de Disjuntores Residencias, sendo Monopolar,Bipolar e Tripolar </p>
+          <p className="uppercase text-lg font-quicksand ">Disjuntores</p>
+          <p className="2xl:py-8 font-light text-2xl ">Uma Vasta Gama de Disjuntores Residencias, sendo Monopolar,Bipolar e Tripolar </p>
             
           </div>
         </div>
@@ -133,7 +138,7 @@ const PresentationGrid = () => {
                       quality={100}
                       objectFit="cover"
                       alt="Card background"
-                        className={` transition-transform object-contain `}
+                        className={` transition-transform object-contain rounded-md `}
                         src={imagem}
                       />
 
@@ -145,7 +150,7 @@ const PresentationGrid = () => {
         </div>
        
         <div
-          className="grid-box  flex items-center justify-center order-5  sm:inline-block"
+          className="grid-box  flex items-center justify-center order-5  sm:inline-block rounded-md"
           style={{ height: "250px" }}
         >
           <div
@@ -167,7 +172,7 @@ const PresentationGrid = () => {
                     quality={100}
                     objectFit="cover"
                     alt="Card background"
-                      className={` transition-transform object-contain `}
+                      className={` transition-transform object-contain rounded-md `}
                       src={imagem}
                     />
 
@@ -179,18 +184,18 @@ const PresentationGrid = () => {
         </div>
 
         <div
-          className="grid-box bg-white flex items-center justify-center order-6"
+          className="grid-box bg-white flex items-center justify-center order-6 border-1 border-black rounded-md"
           style={{ height: "250px" }}
         >
-          <div className="elements text-left p-20 ">
-          <p className="uppercase text-lg">Montagem de Infraestrutura</p>
+          <div className="elements text-left p-20  ">
+          <p className="uppercase ">Montagem de Infraestrutura</p>
             <p className="2xl:py-8 font-light text-2xl">De tamanho para todo agrado, zíper e bolsos internos e externos</p>
         
           </div>
         </div>
 
         <div
-          className="grid-box  flex items-center justify-center order-7"
+          className="grid-box  flex items-center justify-center order-7 rounded-md "
           style={{ height: "250px" }}
         >
           <div
@@ -206,18 +211,18 @@ const PresentationGrid = () => {
                      width={40}
                      height={40}
                       alt="Card background"
-                      className={`z-0 w-[50%] h-[50%]  transition-transform `}
+                      className={`z-0 w-[50%] h-[50%]  transition-transform rounded-md `}
                       src={cabovermelho}
                     />
           </div>
         </div>
 
         <div
-          className="grid-box bg-white flex items-center justify-center order-8"
+          className="grid-box bg-white flex items-center justify-center order-8 border-1 border-black rounded-md"
           style={{ height: "250px" }}
         >
           <div className="elements text-left p-20">
-            <p className="uppercase text-lg">E muito mais</p>
+            <p className="uppercase text-lg ">E muito mais</p>
             <p className="2xl:py-8 font-light text-2xl">Vem olhar nossa seleção, tem Chita para todo gosto!</p>
             <Link href="/all-products">
               <Button color="primary" className="py-8 my-2">
