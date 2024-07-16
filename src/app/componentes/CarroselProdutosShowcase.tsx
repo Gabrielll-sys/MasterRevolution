@@ -1,6 +1,6 @@
 'use client';
 
-import IMaterial from "@/interfaces/IMaterial";
+import IProduto from "@/interfaces/IProduto";
 import { Image } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import Slider from "react-slick";
@@ -8,7 +8,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 export default function CarroselProdutosShowcase() {
-  const [materiais, setMateriais] = useState<IMaterial[]>([]);
+  const [materiais, setMateriais] = useState<IProduto[]>([]);
   const [isClient, setIsClient] = useState(false);
   const imagens = ["/src/app/assets/773203414-frutas-e1701802035802.png","/src/app/assets/frutas_da_estacao_ypedia-scaled-1698513255.jpg","/src/app/assets/pera-frutas-de-marco.jpg"]
 
