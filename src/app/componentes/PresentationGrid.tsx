@@ -81,7 +81,7 @@ const PresentationGrid = () => {
             
 
 
-            <Slider {...settings} className="object-cover">
+            <Slider {...settings} >
             {imagensCabos.map((imagem)=>(
 
               <Image
@@ -89,9 +89,9 @@ const PresentationGrid = () => {
                        width={100}
                        height={100}
                        quality={100}
-                        objectFit="cover"
+                    
                        alt="Card background"
-                        className="transition-transform object-cover rounded-md "
+                        className="transition-transform  rounded-md "
                         src={imagem}
                       />
           

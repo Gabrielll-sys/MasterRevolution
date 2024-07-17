@@ -1,7 +1,7 @@
 'use client';
 
 import { getAllMateriais } from "@/app/services/Material.Services";
-import IMaterial from "@/interfaces/IMaterial";
+import IProduto from "@/interfaces/IProduto";
 import Slider from "react-slick";
 import { useEffect, useState } from "react";
 import Image from "next/image";
@@ -9,7 +9,7 @@ import Image from "next/image";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 export default function CarroselProdutosShowcase() {
-  const [materiais, setMateriais] = useState<IMaterial[]>([]);
+  const [materiais, setMateriais] = useState<IProduto[]>([]);
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {

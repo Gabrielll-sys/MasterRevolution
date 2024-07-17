@@ -1,25 +1,17 @@
 'use client'
+import ProdutoShowcase from "@/app/componentes/ProdutoShowcase";
+import { ProdutoContext } from "@/app/contexts/ProdutoContext"
 import { Button } from "@nextui-org/react"
-import { useRouter } from "next/router"
+import { useContext } from "react"
 
+export default function Produto () {
+    const { produto } = useContext(ProdutoContext);
 
-export default function Produto ({produto}:any){
-
-    const router = useRouter()
-
-    const {productName} = router.query
-
-    console.log(productName)
-
-return(
-<div>
-
-<Button onClick={()=>console.log(produto)}/>
-</div>
-    
-)
-
-
-
-
+    return (
+        <div>
+            <Button onClick={() => console.log(produto)}/>
+           
+            <ProdutoShowcase/>
+        </div>
+    );
 }

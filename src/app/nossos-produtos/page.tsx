@@ -1,6 +1,6 @@
 'use client'
 import { getAllMateriais } from "@/app/services/Material.Services";
-import IMaterial from "@/interfaces/IMaterial";
+import IProduto from "@/interfaces/IProduto";
 import { useEffect, useState } from "react";
 import ProdutoCard from "../componentes/ProdutoCard";
 
@@ -8,7 +8,7 @@ import ProdutoCard from "../componentes/ProdutoCard";
 
 export default function NossosProdutos()
 {
-const [materias,setMateriais] = useState<IMaterial[]>()
+const [materias,setMateriais] = useState<IProduto[]>()
 
         useEffect(()=>{
         getProduto()

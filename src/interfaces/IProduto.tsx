@@ -3,12 +3,8 @@ id?:number,
 categoria: string
 codigoFabricante: string
 corrente:string,
-dataEntradaNF? : Date,
-descricao: string,
-localizacao: string,
+descricao: string
 marca: string,
-markup?: string| number | null ,
-precoCusto?: number | string,
 precoVenda?: number,
 tensao: string,
 unidade: string,
