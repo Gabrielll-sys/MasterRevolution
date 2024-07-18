@@ -1,28 +1,26 @@
 'use client';
-import { Button } from "@nextui-org/react";
+import { Button, Link } from "@nextui-org/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import whatsAppIcon from "../../app/assets/icon-whatsapp.png"
+import IconWhatsapp from "../assets/icons/IconWhatsapp";
 
 export default function SendWhatsAppMessage() {
   
   const route = useRouter();
   
   return (
-   <div className="absolute right-5 bottom-5 ">
-        <Button className="bg-transparent p-0" onClick={()=>route.push(
-      `https://api.whatsapp.com/send?phone=71103718&text=Bom Dia`
-    )}>
-          <Image
-              src={whatsAppIcon}
-              alt={`Whatsapp`}
-              
-              width={50}
-              height={50}
-              className="cursor-pointer bg-green"
+   <div className="fixed rounded-md left-5 bottom-6 ">
+        <Link className=" p-0 rounded-md  " href={`https://api.whatsapp.com/send?phone=71103718&text=Olá Peguei seu contato do site`}
+      >
+          <IconWhatsapp
+           width={"3.2em"}
+            height={"3.2em"}
+              color="white"
+              className="rounded-full bg-green  p-2"
           
           />
-        </Button>
+        </Link>
 
    </div>
   );
