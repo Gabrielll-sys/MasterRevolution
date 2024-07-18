@@ -56,7 +56,7 @@ const getPeriodoDia = ()=>{
     
     return(
         <>
-      <div className=" flex flex-row w-[100%] justify-center  items-center gap-12  " >
+      <div className=" flex flex-row w-[100%] justify-center  items-center gap-12  "  >
 
       <Image alt="Card background" width={400} height={400} className={` transition-transform `} src={imagem} />
       

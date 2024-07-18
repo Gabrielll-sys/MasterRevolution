@@ -5,6 +5,7 @@ import React, {
   useState,
   Dispatch,
   SetStateAction,
+  useContext,
 } from "react";
 
 type ProdutoContextProps = {
@@ -12,19 +13,34 @@ type ProdutoContextProps = {
 };
 
 type ProdutoContextType = {
-  produto: IProduto | null;
-  setProduto: Dispatch<SetStateAction<IProduto | null>>;
+  produto: IProduto ;
+  setProduto: Dispatch<SetStateAction<IProduto>>;
 };
 
-const initialValue: ProdutoContextType = {
-  produto: null,
-  setProduto: () => {},
+const initialValue: IProduto = {
+  id: 0,
+  categoria: "",
+  codigoFabricante: "",
+  corrente: "",
+  descricao: "",
+  marca: "",
+  precoVenda: 0,
+  tensao: "",
+  unidade: "",
+  urlImage: null,
 };
+export const ProdutoContext = createContext<ProdutoContextType | undefined>(undefined);
 
-export const ProdutoContext = createContext<ProdutoContextType>(initialValue);
+export const useProduto = (): ProdutoContextType => {
+  const context = useContext(ProdutoContext);
+  if (!context) {
+    throw new Error("useProduct must be used within a ProductProvider");
+  }
+  return context;
+};
 
 export default function ProdutoContextProvider({ children }: ProdutoContextProps) {
-  const [produto, setProduto] = useState<IProduto | null>(initialValue.produto);
+  const [produto, setProduto] = useState<IProduto >(initialValue);
 
   return (
     <ProdutoContext.Provider value={{ produto, setProduto }}>

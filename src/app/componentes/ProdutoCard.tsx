@@ -8,14 +8,15 @@ import IProduto from "@/interfaces/IProduto";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert, { AlertColor } from "@mui/material/Alert";
 import CartPlusIcon from "../assets/icons/CartPlusIcon";
-import { ProdutoContext } from "../contexts/ProdutoContext";
+import { ProdutoContext, useProduto } from "../contexts/ProdutoContext";
 
 interface ProdutoCardProps {
   produto: IProduto;
 }
 
 const ProdutoCard: React.FC<ProdutoCardProps> = ({ produto }) => {
-  const { setProduto } = useContext(ProdutoContext);
+
+  const {setProduto} = useProduto()
   const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
   const [messageAlert, setMessageAlert] = useState<string>("");
   const [severidadeAlert, setSeveridadeAlert] = useState<AlertColor>();
@@ -49,10 +50,11 @@ const ProdutoCard: React.FC<ProdutoCardProps> = ({ produto }) => {
     console.log(produto)
     setProduto(produto);
   };
-
+  
   return (
     <div className="flex flex-wrap gap-2 justify-between border-1 border-black rounded-md shadow-sm shadow-black">
       {/* Card itens */}
+      <Link onPress={handleClick} href={`produto/${produto.descricao}`}>
       <Card
         className="flex-wrap font-open bg-light p-3"
         isPressable
@@ -101,7 +103,7 @@ const ProdutoCard: React.FC<ProdutoCardProps> = ({ produto }) => {
           </CardFooter>
         </CardBody>
       </Card>
-
+      </Link>
       <Snackbar
         open={openSnackBar}
         anchorOrigin={{
