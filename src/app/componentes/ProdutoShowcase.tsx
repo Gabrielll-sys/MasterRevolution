@@ -20,7 +20,7 @@ type ProdutoCardProps =  {
  const ProdutoShowcase= ({produto}: ProdutoCardProps)=>{
    
    
-   
+
     const router = useRouter()
     const pathname = usePathname();
 

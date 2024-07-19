@@ -63,12 +63,8 @@ const ProdutoCard: React.FC<ProdutoCardProps> = ({ produto }) => {
       >
         <CardBody className="flex flex-col overflow-hidden relative p-0 m-0">
           <div
-            className=" text-center align-middle items-center flex justify-center"
-            style={{
-              height: "300px",
-              width: "100%",
-              overflow: "hidden",
-            }}
+            className=" text-center align-middle items-center flex justify-center overflow-hidden h-[300px] w-[100%] max-sm:w-[50%] max-sm:h-[200px]"
+           
           >
             <Image alt="Card background" height={220} width={220} className={`z-0  transition-transform `} src={imagem} />
           </div>
@@ -80,10 +76,10 @@ const ProdutoCard: React.FC<ProdutoCardProps> = ({ produto }) => {
               {produto.precoVenda != null ? (
 
              <Flex direction="column" gap="3">  
-                 <p className="font-semibold text-center  font-quicksand text-sm">
-                 <strong className="text-[#32BCAD] text-[20px]">R${produto?.precoVenda.toFixed(2).toString().replace(".", ",")}</strong>   no PIX
+                 <p className="font-semibold text-center  font-quicksand text-sm max-sm:text-[14px]">
+                 <strong className="text-[#32BCAD] max:md:text-[20px] max-sm:text-[14px]">R${produto?.precoVenda.toFixed(2).toString().replace(".", ",")}</strong>   no PIX
                  </p>
-                 <p className="font-semibold text-center font-quicksand text-base">
+                 <p className="font-semibold text-center font-quicksand text-base max-sm:text-[14px]">
                   1x de <strong >R${produto?.precoVenda.toFixed(2).toString().replace(".", ",")}</strong>
                  </p>
              </Flex>

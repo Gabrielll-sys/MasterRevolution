@@ -1,11 +1,11 @@
 'use client'
 import ProdutoShowcase from "@/app/componentes/ProdutoShowcase";
-import { ProdutoContext } from "@/app/contexts/ProdutoContext"
+import { ProdutoContext, useProduto } from "@/app/contexts/ProdutoContext"
 import { Button } from "@nextui-org/react"
 import { useContext } from "react"
 
 export default function Produto () {
-    const { produto } = useContext(ProdutoContext);
+    const { produto } = useProduto()
 
     return (
         <div>

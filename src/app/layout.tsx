@@ -8,6 +8,8 @@ import SendWhatsAppMessage from './componentes/SendWhatsAppMessage';
 import Header from './componentes/Header';
 import Footer from './componentes/Footer';
 import { Theme } from '@radix-ui/themes';
+import { QueryClient,QueryClientProvider } from '@tanstack/react-query';
+
 const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -21,11 +23,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-
+  const queryClient = new QueryClient()
 
   return (
     <html lang="pt-br">
       <body className='min-h-screen  ' suppressHydrationWarning={true}>
+        
+        <QueryClientProvider client={queryClient}>
         <Theme>
           <Providers>
           <Script
@@ -51,7 +55,7 @@ export default function RootLayout({
           <Footer/>
           </Providers>
         </Theme>
- 
+        </QueryClientProvider>
       </body>
     </html>
   )

@@ -27,12 +27,12 @@ return(
    
         <Flex direction="row" gap="9" justify="end" className="mt-10">
             <LeftSearchParameters/>
-            <div className="flex flex-row flex-wrap gap-10 justify-center w-[70%]  ">
+            <Flex  direction="row" wrap="wrap" justify="center" width="70vw" gap="6" >
             {materias?.map((material)=>(
             
                    <ProdutoCard produto={ material}/>
             ))}
-            </div>
+            </Flex>
         </Flex>
     
 </>
