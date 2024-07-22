@@ -4,35 +4,38 @@ import IProduto from "@/interfaces/IProduto";
 import { useEffect, useState } from "react";
 import ProdutoCard from "../componentes/ProdutoCard";
 import LeftSearchParameters from "../componentes/LeftSearchParameters";
-import { Flex } from "@radix-ui/themes";
+import { Button, Flex } from "@radix-ui/themes";
+import { useQuery } from "@tanstack/react-query";
 
 
 
 export default function NossosProdutos()
 {
-const [materias,setMateriais] = useState<IProduto[]>()
 
-        useEffect(()=>{
-        getProduto()
-        },[])
 
-const getProduto = async()=>{
+const { data: materiais, error, isLoading } = useQuery<IProduto[]>({
+    queryKey: ["materiais"],
+    queryFn: getAllMateriais,
+  });
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
 
-    const res = await getAllMateriais()
-    setMateriais(res)
-}
 
 return(
     <>
    
         <Flex direction="row" gap="9" justify="end" className="mt-10">
+          
             <LeftSearchParameters/>
             <Flex  direction="row" wrap="wrap" justify="center" width="70vw" gap="6" >
-            {materias?.map((material)=>(
+            {materiais?.map((material)=>(
             
-                   <ProdutoCard produto={ material}/>
+                   <ProdutoCard produtoCard={ material}/>
             ))}
             </Flex>
+            
+            
         </Flex>
     
 </>

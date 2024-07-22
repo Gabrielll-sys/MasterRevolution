@@ -1,22 +1,22 @@
-"use client"
-import {NextUIProvider} from "@nextui-org/react";
+"use client";
+import { NextUIProvider } from "@nextui-org/react";
 import CarrinhoContextProvider from "./CarrinhoContext";
 import ProdutoContextProvider from "./ProdutoContext";
-export default function Providers({children}:{children:React.ReactNode}){
-    
-    return(
-  
-            <NextUIProvider>
-                <ProdutoContextProvider>
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useState } from "react";
 
-                <CarrinhoContextProvider>
+export default function Providers({ children }: { children: React.ReactNode }) {
+  const [client] = useState(new QueryClient());
 
-                {children}
-                </CarrinhoContextProvider>
-                </ProdutoContextProvider>
-            </NextUIProvider>
-
-
-
-    )
+  return (
+    <QueryClientProvider client={client}>
+      <NextUIProvider>
+        <ProdutoContextProvider>
+          <CarrinhoContextProvider>
+            {children}
+          </CarrinhoContextProvider>
+        </ProdutoContextProvider>
+      </NextUIProvider>
+    </QueryClientProvider>
+  );
 }

@@ -9,20 +9,42 @@ import IProduto from "@/interfaces/IProduto";
 import { usePathname, useRouter } from "next/navigation";
 
 import IconWhatsapp from "../assets/icons/IconWhatsapp";
-
+import { useState } from "react";
+import { AlertColor, Snackbar } from "@mui/material";
+import MuiAlert from "@mui/material/Alert";
+import { Flex } from "@radix-ui/themes";
 type ProdutoCardProps =  {
     produto: IProduto;
   }
 
 
-
-
  const ProdutoShowcase= ({produto}: ProdutoCardProps)=>{
-   
-   
-
+  
     const router = useRouter()
     const pathname = usePathname();
+    const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
+    const [messageAlert, setMessageAlert] = useState<string>("");
+    const [severidadeAlert, setSeveridadeAlert] = useState<AlertColor>();
+    const handleStorageProductCart = () => {
+
+      const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
+      const itemExistente = arrItens.find((item: any) => item.id === produto.id);
+      console.log(itemExistente)
+      if (itemExistente) {
+        setMessageAlert("Este item já está no seu carrinho");
+        setSeveridadeAlert("warning");
+        setOpenSnackBar(true);
+      } else {
+        arrItens.push(produto);
+        localStorage.setItem("cartItens", JSON.stringify(arrItens));
+     
+        setSeveridadeAlert("success");
+        setMessageAlert(
+          "O item " + produto.descricao + " foi adicionado no seu carrinho com sucesso!"
+        );
+        setOpenSnackBar(true);
+      }
+    };
 
     const verLocal = ()=>{
 
@@ -56,26 +78,26 @@ const getPeriodoDia = ()=>{
     
     return(
         <>
-      <div className=" flex flex-row w-[100%] justify-center  items-center gap-12  "  >
+      <Flex justify="center" direction="row" gap='8' className="mt-10"  >
 
-      <Image alt="Card background" width={400} height={400} className={` transition-transform `} src={imagem} />
+      <Image alt="Card background" width={320} height={320} className={` transition-transform `} src={imagem} />
       
         <div className="flex flex-col gap-12 w-[400px]">
 
-        <h1 className="font-bold">CABO FLEX UNIFILAR,5MM 750V BRANCO BRANCO BRANCO </h1>
+        <h1 className="font-bold">{produto?.descricao} </h1>
 
 
         <div className="flex flex-row justify-between ">
 
         <div className="flex flex-col gap-2">
             
-        <p  className="text-2xl text-[#32BCAD] font-quicksand"> <IconPix/>R$20,00</p>
+        <p  className="text-2xl text-[#32BCAD] font-quicksand"> <IconPix height="18" width="18" />R${produto?.precoVenda?.toFixed(2).toString().replace(".", ",")}</p>
         <p className="text-[12px] ">PREÇO A VISTA</p>
         </div>
 
         <div className="flex flex-col gap-2">
             
-        <p  className="text-2xl"><IconCreditCard2Back/>R$20,00</p>
+        <p  className="text-2xl"><IconCreditCard2Back height="18" width="18"/>R$20,00</p>
         <p className="text-[12px]">EM ATE <strong>5x</strong> SEM JUROS</p>
         </div>
 
@@ -86,7 +108,7 @@ const getPeriodoDia = ()=>{
 
             <div className="flex flex-row w-full justify-between">
                 <QuantityManagerCart/>
-                <Button className="bg-[#1DB954] text-white text-[16px] p-6 rounded-md">
+                <Button className="bg-[#1DB954] text-white text-[16px] p-6 rounded-md" onClick={handleStorageProductCart}>
                     Adicionar ao Carrinho
                 </Button>
             </div>
@@ -102,8 +124,20 @@ const getPeriodoDia = ()=>{
         </div>
         </div>
 
-      </div>
-
+      </Flex>
+      <Snackbar
+        open={openSnackBar}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "center",
+        }}
+        autoHideDuration={2000}
+        onClose={(e) => setOpenSnackBar(false)}
+      >
+        <MuiAlert onClose={(e) => setOpenSnackBar(false)} severity={severidadeAlert} sx={{ width: "100%" }}>
+          {messageAlert}
+        </MuiAlert>
+      </Snackbar>
 
         </>
     )

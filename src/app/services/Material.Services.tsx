@@ -3,6 +3,17 @@ import { url } from "../api/webApiUrl";
 
 
 
+
+
+export const getMaterialById = async(id:number)=>{
+
+   return await axios.get(`${url}/Materiais/${id}`).then(r=>{
+
+      return r.data
+
+})
+}
+
    export const getAllMateriais = async()=>{
 
       return await axios.get(`${url}/Materiais`).then(r=>{
@@ -27,4 +38,13 @@ import { url } from "../api/webApiUrl";
  
      }
  
+    }
+
+    export const getDescricaoProdutoDaRota = (descricao:string)=>{
+
+   
+      return descricao.includes("%20")? descricao.slice(descricao.lastIndexOf("/")+1,descricao.length-1).split("%20").join(" "):descricao.slice(descricao.lastIndexOf("/")+1,descricao.length-1)
+
+
+
     }
