@@ -50,11 +50,11 @@ const PresentationGrid = () => {
   return (
     <>
     
-    <div className="p-2">
+   
       <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-4">
         {/* First row */}
         <div
-          className="grid-box bg-white flex items-center justify-center order-1 border-1 border-cardbg_color "
+          className="grid-box bg-white flex items-center justify-center order-1  "
           style={{ height: "350px" }}
         >
           <div className="elements text-left p-12">
@@ -105,7 +105,7 @@ const PresentationGrid = () => {
     
         </div>
         <div
-          className="grid-box bg-white flex items-center justify-center order-3 border-1 border-black "
+          className="grid-box bg-white flex items-center justify-center order-3  "
           style={{ height: "350px" }}
         >
           <div className="elements text-left p-10">
@@ -186,7 +186,7 @@ const PresentationGrid = () => {
         </div>
 
         <div
-          className="grid-box bg-white flex items-center justify-center order-6 border-1 border-black "
+          className="grid-box bg-white flex items-center justify-center order-6  "
           style={{ height: "450px" }}
         >
           <div className="elements text-left p-20  ">
@@ -209,19 +209,12 @@ const PresentationGrid = () => {
               position: "relative",
             }}
           >
-            <Image
-                     width={40}
-                     height={40}
-                      alt="Card background"
-                      layout="responsive"
-                      className={`z-0 w-[50%] h-[50%]  transition-transform  `}
-                      src={cabovermelho}
-                    />
+         
           </div>
         </div>
 
         <div
-          className="grid-box bg-white flex items-center justify-center order-8 border-1 border-black "
+          className="grid-box bg-white flex items-center justify-center order-8  "
           style={{ height: "450px" }}
         >
           <div className="elements text-left p-20">
@@ -236,11 +229,6 @@ const PresentationGrid = () => {
         </div>
       </div>
 
-
-
-
-      
-    </div>
    
      
     </>

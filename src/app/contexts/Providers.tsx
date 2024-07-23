@@ -18,5 +18,6 @@ export default function Providers({ children }: { children: React.ReactNode }) {
         </ProdutoContextProvider>
       </NextUIProvider>
     </QueryClientProvider>
+    
   );
 }
