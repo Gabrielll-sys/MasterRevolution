@@ -61,14 +61,16 @@ console.log(path)
             <IconMagnifyingGlass className="cursor-pointer" height="16" width="16" onClick={searchProduto} /> 
                 </TextField.Slot>
               </TextField.Root>
+                   <Link href="/carrinho">
               <div className="relative inline-blockc hover:border-1 hover:border-grayLine p-1">
          
-                   <IconBag width={"1.7em"} height={"1.7em"} className="cursor-pointer" />
+                     <IconBag width={"1.7em"} height={"1.7em"} className="cursor-pointer"  />
                    <div className=" absolute bottom-[-13px] right-[-10px] bg-master_yellow rounded-[80px] w-[25px] h-[25px] text-center">
                      <Text className=" text-black text-[13px] ">{numeroItensCarrinho}</Text>
                    </div>
                  
               </div>
+                   </Link>
                 </div>
         </div>
 
