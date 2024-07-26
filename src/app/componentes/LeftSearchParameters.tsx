@@ -13,15 +13,17 @@ export default function LeftSearchParameters({onFilterChange}) {
         setMaxValueProduct(values[1]);
     }
     return (
-    <Box maxWidth="800px">
+    <Box maxWidth="300px">
 
     <Flex direction="column" wrap="wrap" width="200px" gap="5">
   
-            <Button variant="surface" className='text-[18px] cursor-pointer'>
+            <Button variant="surface" className='text-[16px] cursor-pointer'>
                 <IconTrash height="20" width="20" /> Limpar Filtros
             </Button>
             <Text>Busque por preços</Text>
-        <Slider  defaultValue={[minValueProduct, maxValueProduct]} color='yellow' onValueChange={handleValueChange} />
+        <Box maxWidth="400px">
+            <Slider  defaultValue={[minValueProduct, maxValueProduct]} color='yellow' size="2" onValueChange={handleValueChange} />
+        </Box>
 
             <Flex direction="row" gap="4" >
 
@@ -30,7 +32,7 @@ export default function LeftSearchParameters({onFilterChange}) {
                 <IconCurrencyReal height="16" width="16" />
                     </TextField.Slot>
                 </TextField.Root>
-                <TextField.Root  size="3" className="w-[100px]" variant="classic" value={maxValueProduct}>
+                <TextField.Root  size="3" className="w-[100px]" variant="classic" value={maxValueProduct} onChange={(x)=>setMaxValueProduct(x.target.value)}>
                     <TextField.Slot>
                 <IconCurrencyReal height="16" width="16" />
                     </TextField.Slot>

@@ -1,13 +1,13 @@
 "use client"
 import Image from "next/image";
 import imagem from "../assets/disjuntor-bipolar.jpg"
-import { Button } from "@nextui-org/react";
+import { Button} from "@nextui-org/react";
 import IconPix from "../assets/icons/IconPix";
 import IconCreditCard2Back from "../assets/icons/IconCreditCard2Back";
 import QuantityManagerCart from "./QuantityManagerCart";
 import IProduto from "@/interfaces/IProduto";
 import { usePathname, useRouter } from "next/navigation";
-
+import { Skeleton, Text } from "@radix-ui/themes";
 import IconWhatsapp from "../assets/icons/IconWhatsapp";
 import { useState } from "react";
 import { AlertColor, Snackbar } from "@mui/material";
@@ -83,8 +83,10 @@ const getPeriodoDia = ()=>{
       <Image alt="Card background" width={320} height={320} className={` transition-transform `} src={imagem} />
       
         <div className="flex flex-col gap-12 w-[400px]">
+        
 
-        <h1 className="font-bold">{produto?.descricao} </h1>
+        <Text className="font-bold"> <Skeleton loading={!produto?.descricao}>{produto?.descricao} </Skeleton> </Text>
+        
 
 
         <div className="flex flex-row justify-between ">

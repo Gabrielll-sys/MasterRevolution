@@ -23,14 +23,23 @@ import { usePathname, useRouter } from "next/navigation";
    
     if (event.key === "Enter") {
 
-        path.includes("busca")?route.push(`${descricaoProduto}`): route.push(`busca/${descricaoProduto}`)
+        searchProduto()
 
     }
   };
 
   const searchProduto = ()=>{
-    path.includes("busca")?route.push(`${descricaoProduto}`): route.push(`busca/${descricaoProduto}`)
+console.log(path)
+   if( path.includes("busca")){
+    route.push(`${descricaoProduto}`)
   }
+  else if (path.includes("produto"))
+    {
+
+      route.push(`/busca/${descricaoProduto}`)
+
+  }
+}
 
   useEffect(()=>{
     const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");

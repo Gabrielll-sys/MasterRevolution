@@ -4,7 +4,7 @@ import IProduto from "@/interfaces/IProduto";
 import { useEffect, useState } from "react";
 import ProdutoCard from "../componentes/ProdutoCard";
 import LeftSearchParameters from "../componentes/LeftSearchParameters";
-import { Button, Flex } from "@radix-ui/themes";
+import { Button, Flex, Skeleton } from "@radix-ui/themes";
 import { useQuery } from "@tanstack/react-query";
 
 
@@ -28,10 +28,13 @@ return(
         <Flex direction="row" gap="9" justify="end" className="mt-10">
           
             <LeftSearchParameters/>
+
             <Flex  direction="row" wrap="wrap" justify="center" width="70vw" gap="6" >
             {materiais?.map((material)=>(
-            
-                   <ProdutoCard produtoCard={ material}/>
+            <Skeleton loading={isLoading}>
+              
+              <ProdutoCard produtoCard={ material}/>
+            </Skeleton>
             ))}
             </Flex>
             

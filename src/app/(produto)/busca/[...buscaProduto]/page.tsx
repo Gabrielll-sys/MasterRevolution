@@ -6,7 +6,7 @@ import ProdutoShowcase from "@/app/componentes/ProdutoShowcase";
 import { getDescricaoProdutoDaRota, searchByDescription } from "@/app/services/Material.Services";
 import IProduto from "@/interfaces/IProduto";
 import { Button } from "@nextui-org/react"
-import { Flex } from "@radix-ui/themes";
+import { Box, Flex } from "@radix-ui/themes";
 import { useQuery } from "@tanstack/react-query";
 import { usePathname } from "next/navigation";
 
@@ -14,7 +14,7 @@ export default function Busca() {
   const path = usePathname();
   const descricaoProduto = getDescricaoProdutoDaRota(path);
 
-  const { data: produtosEncontrados, isFetching, error } = useQuery({
+  const { data: produtosEncontrados, isFetching, error } = useQuery<any[]>({
     queryKey: ['produto', descricaoProduto],
     queryFn: () => searchByDescription(descricaoProduto),
     enabled: !!descricaoProduto, // Evita que a query seja feita se a descrição estiver vazia
@@ -24,11 +24,14 @@ export default function Busca() {
   });
 
     return (
-        <Flex direction="row" gap="9" justify="center" className="mt-10" >
-          <Flex  direction="row" wrap="wrap" justify="end" width="70vw" gap="6"  >
+        <Flex direction="row" gap="3" wrap="wrap" justify="center" className="mt-10 p-4 " >
              <LeftSearchParameters/>
-                { produtosEncontrados && produtosEncontrados.map((produto:IProduto)=>(
+          <Flex  direction="row" wrap="wrap" justify="center" width="70vw" gap="6"  >
+                { produtosEncontrados && produtosEncontrados.map((produto:any,index)=>(
+              
+            
               <ProdutoCard produtoCard={produto.material}/>
+                
                 ))}
           
           </Flex>

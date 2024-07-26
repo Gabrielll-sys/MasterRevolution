@@ -10,7 +10,7 @@ import Snackbar from "@mui/material/Snackbar";
 import MuiAlert, { AlertColor } from "@mui/material/Alert";
 import CartPlusIcon from "../assets/icons/CartPlusIcon";
 import ProdutoContextProvider, { useProduto } from "../contexts/ProdutoContext";
-import { Button, Flex } from "@radix-ui/themes";
+import { Box, Button, Flex } from "@radix-ui/themes";
 import { usePathname, useRouter } from "next/navigation";
 
 interface ProdutoCardProps {
@@ -25,17 +25,26 @@ const ProdutoCard = ({ produtoCard }:ProdutoCardProps) => {
   const [severidadeAlert, setSeveridadeAlert] = useState<AlertColor>();
   const path = usePathname()
   
+const handleChangeRouteToProductPage = ()=>{
+  
+  
+
+    route.push(`/produto/${produtoCard.descricao}-id=${produtoCard.id}`)
+  
+
+}
 
  
 
   return (
     <div className="flex flex-wrap gap-2 justify-between border-1 border-grayLine rounded-sm">
-      <Link   href={`produto/${produtoCard.descricao}-id=${produtoCard.id}`}>
+      <div  onClick={handleChangeRouteToProductPage} className="cursor-pointer">
    
         <Card
           className="flex-wrap font-open bg-light p-3"
           isPressable
           shadow="none"
+          onPress={handleChangeRouteToProductPage}
           style={{ width: "320px", height: "370px" }}
         >
           <CardBody className="flex flex-col overflow-hidden relative p-0 m-0">
@@ -75,7 +84,7 @@ const ProdutoCard = ({ produtoCard }:ProdutoCardProps) => {
             </CardFooter>
           </CardBody>
         </Card>
-      </Link>
+      </div>
 
       <Snackbar
         open={openSnackBar}
