@@ -3,7 +3,12 @@ import React, { useState } from 'react'
 import IconCurrencyReal from '../assets/icons/IconCurrencyReal'
 import IconTrash from '../assets/icons/IconTrash'
 
-export default function LeftSearchParameters({onFilterChange}) {
+
+type LeftSearchParametersProps ={
+    onFilterChange:()=>void
+}
+
+export default function LeftSearchParameters({onFilterChange}:LeftSearchParametersProps) {
   
     const[minValueProduct,setMinValueProduct] = useState(0)
     const[maxValueProduct,setMaxValueProduct] = useState(1000000)

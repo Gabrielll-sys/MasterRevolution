@@ -24,7 +24,7 @@ export default function QuantityManagerCart({ onOpen, ...props }: any) {
 
 
   return (
-    <div className="flex items-center gap-5 border-1 border-grayLine rounded-md p-1 w-[132px] justify-around ">
+    <div className="flex items-center gap-5 border-1 border-grayLine rounded-md p-1 h-[40px] w-[132px] justify-around ">
       <Button
         isIconOnly
         className="shadow-sm hover:opacity-80 hover:scale-105 bg-transparent"
