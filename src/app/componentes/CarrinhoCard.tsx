@@ -53,7 +53,7 @@ export default function CarrinhoCard({produto,onDeleteProdutoCarrinho}:CarrinhoC
                 <Button
                   color="crimson"
                   variant="outline"
-                  className="hover:opacity-50"
+                  className="hover:opacity-50 text-base"
                  
                 >
                   <IconCartX />

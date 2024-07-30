@@ -1,10 +1,12 @@
 'use client'
 import IProduto from '@/interfaces/IProduto';
-import { Flex, Text } from '@radix-ui/themes';
+import { Button, Flex, Text } from '@radix-ui/themes';
 import React, { useEffect, useState } from 'react'
 import CarrinhoCard from '../componentes/CarrinhoCard';
 import { AlertColor, Snackbar } from '@mui/material';
 import MuiAlert from "@mui/material/Alert";
+import IconWhatsapp from '../assets/icons/IconWhatsapp';
+import IItemCarrinho from '@/interfaces/IITemCarrinho';
 
 export default function Carrinho() {
   
@@ -12,13 +14,16 @@ export default function Carrinho() {
     const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
     const [messageAlert, setMessageAlert] = useState<string>("");
     const [severidadeAlert, setSeveridadeAlert] = useState<AlertColor>();
-  useEffect(()=>{
+  
 
-    const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
+    useEffect(()=>{
 
-    setProdutosCarrinho(arrItens)
+      const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
+  
+      setProdutosCarrinho(arrItens)
+    },[])
 
-  },[])
+ 
   
   const deleteProdutoCarrinho = (id:number)=>{
 
@@ -33,6 +38,13 @@ export default function Carrinho() {
     setOpenSnackBar(true);
 
     localStorage.setItem("cartItens", JSON.stringify(withoutProduto));
+
+
+  }
+
+  const finalizarPedidoWhatsApp = ()=>{
+
+    const produtoCarrinhoUsuario: IItemCarrinho[] = JSON.parse(localStorage.getItem("cartItens") || "[]");
 
 
   }
@@ -53,7 +65,9 @@ export default function Carrinho() {
             ))}
             </Flex>
 
-
+            <Button  onClick={finalizarPedidoWhatsApp} size="2" color='green' variant='outline' className="text-[18px] max-w-[500px] self-center p-5  text-green">
+            <IconWhatsapp width={"1.4em"} height={"1.4em"} color="green" />  Finalizar Pedido No WhatsApp
+              </Button>
         </Flex>
 
 

@@ -30,10 +30,10 @@ import { usePathname, useRouter } from "next/navigation";
 
   const searchProduto = ()=>{
 console.log(path)
-   if( path.includes("busca")){
+   if( path.includes("busca")   ){
     route.push(`${descricaoProduto}`)
   }
-  else if (path.includes("produto"))
+  else if (path.includes("produto") || path.includes("carrinho") || path.includes("/"))
     {
 
       route.push(`/busca/${descricaoProduto}`)

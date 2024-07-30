@@ -5,7 +5,16 @@ import IconPlusSquare from "../assets/icons/IconPlusSquare";
 import IconMinusSquare from "../assets/icons/IconMinusSquare";
 
 
-export default function QuantityManagerCart({ onOpen, ...props }: any) {
+type QuantityManagerCartProps = {
+
+  isFromCartPage:boolean,
+  isFromProductPage:boolean
+
+
+}
+
+
+export default function QuantityManagerCart({isFromCartPage = false,isFromProductPage = false}:QuantityManagerCartProps) {
 
 
   const [quantidade, setQuantidade] = useState<number>(0);

@@ -13,6 +13,7 @@ import { useState } from "react";
 import { AlertColor, Snackbar } from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
 import { Flex } from "@radix-ui/themes";
+import IItemCarrinho from "@/interfaces/IITemCarrinho";
 type ProdutoCardProps =  {
     produto: IProduto;
   }
@@ -25,11 +26,14 @@ type ProdutoCardProps =  {
     const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
     const [messageAlert, setMessageAlert] = useState<string>("");
     const [severidadeAlert, setSeveridadeAlert] = useState<AlertColor>();
+
+
+  
+
     const handleStorageProductCart = () => {
 
       const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
       const itemExistente = arrItens.find((item: any) => item.id === produto.id);
-      console.log(itemExistente)
       if (itemExistente) {
         setMessageAlert("Este item já está no seu carrinho");
         setSeveridadeAlert("warning");
@@ -109,7 +113,7 @@ const getPeriodoDia = ()=>{
         <div className="flex flex-col gap-8">
 
             <div className="flex flex-row w-full justify-between">
-                <QuantityManagerCart/>
+                <QuantityManagerCart />
                 <Button className="bg-[#1DB954] text-white text-[16px] p-6 rounded-md" onClick={handleStorageProductCart}>
                     Adicionar ao Carrinho
                 </Button>
