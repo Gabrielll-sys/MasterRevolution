@@ -35,7 +35,7 @@ export default function CarrinhoCard({produto,onDeleteProdutoCarrinho}:CarrinhoC
     <Text className='max-w-[230px]'>{produto.descricao}</Text>
         <QuantityManagerCart/>
 
-        <Flex direction="column" gapY="4">
+        <Flex direction="column" gapY="4" minWidth="300px">
 
           <Flex direction="row" gap='6' justify="end">
           <Text>Preço Unitário:</Text>

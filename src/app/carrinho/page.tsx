@@ -1,6 +1,6 @@
 'use client'
 import IProduto from '@/interfaces/IProduto';
-import { Button, Flex, Text } from '@radix-ui/themes';
+import { Box, Button, Flex, Progress, Separator, Text } from '@radix-ui/themes';
 import React, { useEffect, useState } from 'react'
 import CarrinhoCard from '../componentes/CarrinhoCard';
 import { AlertColor, Snackbar } from '@mui/material';
@@ -14,22 +14,22 @@ export default function Carrinho() {
     const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
     const [messageAlert, setMessageAlert] = useState<string>("");
     const [severidadeAlert, setSeveridadeAlert] = useState<AlertColor>();
-  
+    const [precoTotal,setPrecoTotal] = useState("0")
 
     useEffect(()=>{
 
       const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
-  
       setProdutosCarrinho(arrItens)
+      calcularTotalProdutosCarrinho()
     },[])
 
  
   
   const deleteProdutoCarrinho = (id:number)=>{
 
-    const arrItens : IProduto[] = JSON.parse(localStorage.getItem("cartItens") || "[]");
+    const produtosCarrinho : IProduto[] = JSON.parse(localStorage.getItem("cartItens") || "[]");
 
-    const withoutProduto = arrItens.filter(x=>x.id!=id)
+    const withoutProduto = produtosCarrinho.filter(x=>x.id!=id)
 
     setProdutosCarrinho(withoutProduto)
 
@@ -39,6 +39,24 @@ export default function Carrinho() {
 
     localStorage.setItem("cartItens", JSON.stringify(withoutProduto));
 
+
+  }
+
+  const calcularTotalProdutosCarrinho = ()=>{
+
+    let total = 0;
+    const produtosCarrinho : IProduto[] = JSON.parse(localStorage.getItem("cartItens") || "[]");
+
+
+    produtosCarrinho.forEach(produto => {
+      if(produto.precoVenda!= undefined && produto.precoVenda!=null){
+
+        total+=produto?.precoVenda
+      }
+    });
+
+    console.log(total)
+    setPrecoTotal(total.toFixed(2).replace('.',','))
 
   }
 
@@ -52,25 +70,48 @@ export default function Carrinho() {
   
     return (
       <>
+      <Flex direction="row" gapX="3" justify="center" my="7" >
+  
+          <Flex direction="column" width="90vw" justify="center" gap="6">
+  
+  
+              <Flex direction="column" gap="6" justify="center"   >
+  
+              {produtosCarrinho.map((produto:IProduto)=>(
+  
+                  <CarrinhoCard produto={produto} onDeleteProdutoCarrinho={(id)=>deleteProdutoCarrinho(id)} />
+  
+              ))}
+              </Flex>
+  
+             
+          </Flex>
 
-        <Flex direction="column" width="100vw" justify="center" gap="6">
-      <Text className='self-center text-2xl bg-master_yellow w-full text-center p-4'>Meu Carrinho</Text>
+              <Box width="500px" height="200px" className='border-1 border-grayLine p-4'>
 
-            <Flex direction="column" gap="6" justify="center"   >
+               <Flex direction="column" gapY="3">
+              <Text>Resumos da compra</Text>
+              <Separator my="3" size="4" />
+              <Flex direction="row" justify="between">
 
-            {produtosCarrinho.map((produto:IProduto)=>(
-               
-                <CarrinhoCard produto={produto} onDeleteProdutoCarrinho={(id)=>deleteProdutoCarrinho(id)} />
+              <Text>Desconto</Text>
+              <Text className='text-[14px]'>R${precoTotal}</Text>
+              </Flex>
 
-            ))}
-            </Flex>
+              <Flex direction="row" justify="between">
+              <Text>Produtos</Text>
+              <Text className='text-[14px]'>R${precoTotal}</Text>
+              
+              </Flex>
+              <Progress value={70} duration="10s" />
+              <Text>Adicione mais R$40,50 de produtos para conseguir desconto%</Text>
+              <Button  onClick={finalizarPedidoWhatsApp} size="2" color='green' variant='outline' className="text-[18px] max-w-[500px] self-center p-4  text-green">
+              <IconWhatsapp width={"1.2em"} height={"1.2em"} color="green" />  Finalizar Pedido 
+                </Button>
+               </Flex>
 
-            <Button  onClick={finalizarPedidoWhatsApp} size="2" color='green' variant='outline' className="text-[18px] max-w-[500px] self-center p-5  text-green">
-            <IconWhatsapp width={"1.4em"} height={"1.4em"} color="green" />  Finalizar Pedido No WhatsApp
-              </Button>
-        </Flex>
-
-
+              </Box>
+      </Flex>
         <Snackbar
         open={openSnackBar}
         anchorOrigin={{
