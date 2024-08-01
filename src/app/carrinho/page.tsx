@@ -87,7 +87,7 @@ export default function Carrinho() {
              
           </Flex>
 
-              <Box width="500px" height="200px" className='border-1 border-grayLine p-4'>
+              <Box width="600px" height="200px" className='border-1 border-grayLine p-4'>
 
                <Flex direction="column" gapY="3">
               <Text>Resumos da compra</Text>

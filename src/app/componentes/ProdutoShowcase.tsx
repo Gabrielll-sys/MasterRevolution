@@ -14,6 +14,8 @@ import { AlertColor, Snackbar } from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
 import { Flex } from "@radix-ui/themes";
 import IItemCarrinho from "@/interfaces/IITemCarrinho";
+import IconMinusSquare from "../assets/icons/IconMinusSquare";
+import IconPlusSquare from "../assets/icons/IconPlusSquare";
 type ProdutoCardProps =  {
     produto: IProduto;
   }
@@ -26,19 +28,23 @@ type ProdutoCardProps =  {
     const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
     const [messageAlert, setMessageAlert] = useState<string>("");
     const [severidadeAlert, setSeveridadeAlert] = useState<AlertColor>();
+    const [quantidade, setQuantidade] = useState<number>(0);
 
 
   
 
     const handleStorageProductCart = () => {
-
+      
       const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
-      const itemExistente = arrItens.find((item: any) => item.id === produto.id);
+      const itemExistente: IItemCarrinho = arrItens.find((item: any) => item.id === produto.id);
+      
       if (itemExistente) {
         setMessageAlert("Este item já está no seu carrinho");
         setSeveridadeAlert("warning");
         setOpenSnackBar(true);
       } else {
+        
+        produto.quantidade = quantidade
         arrItens.push(produto);
         localStorage.setItem("cartItens", JSON.stringify(arrItens));
      
@@ -50,11 +56,7 @@ type ProdutoCardProps =  {
       }
     };
 
-    const verLocal = ()=>{
-
-        const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
-        console.log(arrItens)
-    }
+ 
     const chamarWhatsAppComDescricaoDoProduto = ()=>{
             const mensagem = ` Olá ${getPeriodoDia()}, me interessei pelo produto: ${pathname} `
         router.push(
@@ -63,6 +65,19 @@ type ProdutoCardProps =  {
         )
 
 }
+
+
+
+  const handleIncreaseQuantity = ()=>
+    {
+        setQuantidade(quantidade+1)
+    }
+ const handleDecreaseQuantity = ()=>{
+  
+  quantidade==1 ? setQuantidade(1) : setQuantidade(quantidade-1)
+ 
+    
+  }
 
 const getPeriodoDia = ()=>{
 
@@ -113,7 +128,29 @@ const getPeriodoDia = ()=>{
         <div className="flex flex-col gap-8">
 
             <div className="flex flex-row w-full justify-between">
-                <QuantityManagerCart />
+
+              <Flex gap="5" className="flex items-center gap-5 border-1 border-grayLine rounded-md p-1 h-[40px] w-[132px]  ">
+            <Button
+              isIconOnly
+              className="shadow-sm hover:opacity-80 hover:scale-105 bg-transparent"
+              variant="flat"
+              onPress={handleDecreaseQuantity}
+
+            >
+              <IconMinusSquare color="black" />
+            </Button>
+
+            <span>{quantidade}</span>
+
+            <Button
+              isIconOnly
+              variant="flat"
+              className="shadow-sm hover:opacity-80 hover:scale-105 bg-transparent "
+              onPress={handleIncreaseQuantity}
+            >
+              <IconPlusSquare color="black" />
+            </Button>
+          </Flex>
                 <Button className="bg-[#1DB954] text-white text-[16px] p-6 rounded-md" onClick={handleStorageProductCart}>
                     Adicionar ao Carrinho
                 </Button>

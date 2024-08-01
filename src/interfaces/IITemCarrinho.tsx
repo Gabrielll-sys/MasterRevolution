@@ -1,4 +1,4 @@
-import IProduto from "./IProduto";
+
 
 export default interface IItemCarrinho {
 

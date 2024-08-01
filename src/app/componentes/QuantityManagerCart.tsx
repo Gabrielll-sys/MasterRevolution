@@ -7,26 +7,47 @@ import IconMinusSquare from "../assets/icons/IconMinusSquare";
 
 type QuantityManagerCartProps = {
 
-  isFromCartPage:boolean,
-  isFromProductPage:boolean
+  quantidade:number,
 
 
 }
 
 
-export default function QuantityManagerCart({isFromCartPage = false,isFromProductPage = false}:QuantityManagerCartProps) {
+export default function QuantityManagerCart({quantidade}:QuantityManagerCartProps) {
 
 
-  const [quantidade, setQuantidade] = useState<number>(0);
+  const [quantidadeProduto, setQuantidadeProduto] = useState<number>(quantidade);
 
 
   const handleIncreaseQuantity = ()=>
     {
-        setQuantidade(quantidade+1)
+      const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
+      const itemExistente: IItemCarrinho = arrItens.find((item: any) => item.id === produto.id);
+      
+     
+        
+        itemExistente.quantidade += quantidade
+        arrItens.push(itemExistente);
+        localStorage.setItem("cartItens", JSON.stringify(arrItens));
+     
+   
+        setQuantidadeProduto(quantidade+1)
+      }
     }
  const handleDecreaseQuantity = ()=>{
+
+  const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
+  const itemExistente: IItemCarrinho = arrItens.find((item: any) => item.id === produto.id);
   
-  quantidade==1 ? setQuantidade(1) : setQuantidade(quantidade-1)
+ 
+    
+    itemExistente.quantidade>1?itemExistente.quantidade -= quantidadeProduto: itemExistente.quantidade = 1
+    arrItens.push(itemExistente);
+    localStorage.setItem("cartItens", JSON.stringify(arrItens));
+ 
+
+    setQuantidadeProduto(quantidade)
+  
  
     
   }
@@ -44,7 +65,7 @@ export default function QuantityManagerCart({isFromCartPage = false,isFromProduc
         <IconMinusSquare color="black" />
       </Button>
 
-      <span>{quantidade}</span>
+      <span>{quantidadeProduto}</span>
 
       <Button
         isIconOnly
@@ -57,3 +78,7 @@ export default function QuantityManagerCart({isFromCartPage = false,isFromProduc
     </div>
   );
 }
+function setQuantidadeProduto(arg0: any) {
+  throw new Error("Function not implemented.");
+}
+
