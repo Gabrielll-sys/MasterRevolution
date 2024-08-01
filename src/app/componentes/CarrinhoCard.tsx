@@ -9,11 +9,12 @@ import QuantityManagerCart from './QuantityManagerCart'
 import IconCartX from '../assets/icons/IconCartX'
 
 type CarrinhoCardProps = {
-    produto:IProduto,
+    produto:IProduto ,
     onDeleteProdutoCarrinho : (id:number)=>void
 }
 
 export default function CarrinhoCard({produto,onDeleteProdutoCarrinho}:CarrinhoCardProps, ) {
+  
   
   const handleDelete = ()=>{
     if(produto.id != undefined){
@@ -33,7 +34,7 @@ export default function CarrinhoCard({produto,onDeleteProdutoCarrinho}:CarrinhoC
         </Card>
 
     <Text className='max-w-[230px]'>{produto.descricao}</Text>
-        <QuantityManagerCart/>
+        <QuantityManagerCart produtoId={produto.id} quantidade={produto.quantidade} />
 
         <Flex direction="column" gapY="4" minWidth="300px">
 
@@ -44,7 +45,7 @@ export default function CarrinhoCard({produto,onDeleteProdutoCarrinho}:CarrinhoC
 
           <Flex direction="row" gap='6' justify="end">
           <Text>Subtotal:</Text>
-          <Text>R${produto?.precoVenda?.toFixed(2).toString().replace('.',',')}</Text>
+          <Text>R${(produto?.precoVenda * produto?.quantidade).toFixed(2).toString().replace('.',',')}</Text>
           </Flex>
 
           <Flex direction="row" gap="3">

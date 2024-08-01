@@ -46,6 +46,7 @@ type ProdutoCardProps =  {
         
         produto.quantidade = quantidade
         arrItens.push(produto);
+        console.log(produto)
         localStorage.setItem("cartItens", JSON.stringify(arrItens));
      
         setSeveridadeAlert("success");

@@ -18,7 +18,7 @@ export default function Produto () {
     return (
         <div>
         
-            <ProdutoShowcase produto={produto}/>
+            <ProdutoShowcase produto={produto} />
         </div>
     );
 }

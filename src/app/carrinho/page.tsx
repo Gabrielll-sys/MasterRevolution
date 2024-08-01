@@ -17,8 +17,10 @@ export default function Carrinho() {
     const [precoTotal,setPrecoTotal] = useState("0")
 
     useEffect(()=>{
-
+      
+      
       const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
+      console.log(arrItens)
       setProdutosCarrinho(arrItens)
       calcularTotalProdutosCarrinho()
     },[])
