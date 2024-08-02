@@ -1,6 +1,6 @@
 import IProduto from '@/interfaces/IProduto'
 import { AlertDialog, Button, Flex } from '@radix-ui/themes'
-import React from 'react'
+import React, { useState } from 'react'
 import { Text } from '@radix-ui/themes'
 import Image from 'next/image'
 import imagem from "../assets/disjuntor-bipolar.jpg"
@@ -11,15 +11,30 @@ import IconCartX from '../assets/icons/IconCartX'
 type CarrinhoCardProps = {
     produto:IProduto ,
     onDeleteProdutoCarrinho : (id:number)=>void
+    recalculaTotalCarrinho:()=> void
 }
 
-export default function CarrinhoCard({produto,onDeleteProdutoCarrinho}:CarrinhoCardProps, ) {
+export default function CarrinhoCard({produto,onDeleteProdutoCarrinho,recalculaTotalCarrinho}:CarrinhoCardProps, ) {
   
+  const [precoTotal,setPrecoTotal] = useState(produto.precoVenda * produto.quantidade)
+
+const calcularPrecoTotal = (quantidade:number)=>{
+
+  if(produto.precoVenda != undefined )
+    {
+
+    setPrecoTotal(produto?.precoVenda * quantidade)
+
+  }
+  recalculaTotalCarrinho()
+}
+
   
   const handleDelete = ()=>{
     if(produto.id != undefined){
 
       onDeleteProdutoCarrinho(produto.id)
+      recalculaTotalCarrinho()
     }
 
   }
@@ -34,7 +49,7 @@ export default function CarrinhoCard({produto,onDeleteProdutoCarrinho}:CarrinhoC
         </Card>
 
     <Text className='max-w-[230px]'>{produto.descricao}</Text>
-        <QuantityManagerCart produtoId={produto.id} quantidade={produto.quantidade} />
+        <QuantityManagerCart produtoId={produto.id} quantidade={produto.quantidade} recalcularTotal={calcularPrecoTotal} />
 
         <Flex direction="column" gapY="4" minWidth="300px">
 
@@ -45,7 +60,7 @@ export default function CarrinhoCard({produto,onDeleteProdutoCarrinho}:CarrinhoC
 
           <Flex direction="row" gap='6' justify="end">
           <Text>Subtotal:</Text>
-          <Text>R${(produto?.precoVenda * produto?.quantidade).toFixed(2).toString().replace('.',',')}</Text>
+          <Text>R${precoTotal.toFixed(2).toString().replace('.',',')}</Text>
           </Flex>
 
           <Flex direction="row" gap="3">

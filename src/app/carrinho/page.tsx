@@ -7,6 +7,7 @@ import { AlertColor, Snackbar } from '@mui/material';
 import MuiAlert from "@mui/material/Alert";
 import IconWhatsapp from '../assets/icons/IconWhatsapp';
 import IItemCarrinho from '@/interfaces/IITemCarrinho';
+import { useRouter } from 'next/navigation';
 
 export default function Carrinho() {
   
@@ -15,7 +16,7 @@ export default function Carrinho() {
     const [messageAlert, setMessageAlert] = useState<string>("");
     const [severidadeAlert, setSeveridadeAlert] = useState<AlertColor>();
     const [precoTotal,setPrecoTotal] = useState("0")
-
+    const route = useRouter()
     useEffect(()=>{
       
       
@@ -53,7 +54,7 @@ export default function Carrinho() {
     produtosCarrinho.forEach(produto => {
       if(produto.precoVenda!= undefined && produto.precoVenda!=null){
 
-        total+=produto?.precoVenda
+        total+=(produto?.precoVenda * produto.quantidade)
       }
     });
 
@@ -66,13 +67,26 @@ export default function Carrinho() {
 
     const produtoCarrinhoUsuario: IItemCarrinho[] = JSON.parse(localStorage.getItem("cartItens") || "[]");
 
+    let message =
+    `Olá! Gostaria de realizar uma compra. Os produto que gostaria de comprar são:%0a `;
 
+    
+    produtoCarrinhoUsuario.forEach(produto=>{
+      message += ` %0a- ${produto.quantidade} ${
+        produto.quantidade > 1 ? `Unidades` : `Unidade`
+      } de ${produto.descricao}, cada unidade custando R$ ${produto.precoVenda.toFixed(2)}.`;
+    });
+    
+    console.log(message)
+     route.push(`https://api.whatsapp.com/send?phone=71103718&text=${message}`)
+    
+    
   }
   
   
     return (
       <>
-      <Flex direction="row" gapX="3" justify="center" my="7" >
+      <Flex direction="row" gapX="3" justify="center" my="7" mx=""  >
   
           <Flex direction="column" width="90vw" justify="center" gap="6">
   
@@ -81,7 +95,7 @@ export default function Carrinho() {
   
               {produtosCarrinho.map((produto:IProduto)=>(
   
-                  <CarrinhoCard produto={produto} onDeleteProdutoCarrinho={(id)=>deleteProdutoCarrinho(id)} />
+                  <CarrinhoCard produto={produto} onDeleteProdutoCarrinho={(id)=>deleteProdutoCarrinho(id)} recalculaTotalCarrinho={calcularTotalProdutosCarrinho} />
   
               ))}
               </Flex>
@@ -89,7 +103,7 @@ export default function Carrinho() {
              
           </Flex>
 
-              <Box width="600px" height="200px" className='border-1 border-grayLine p-4'>
+              <Box width="600px"  className='border-1 h-auto border-grayLine p-4'>
 
                <Flex direction="column" gapY="3">
               <Text>Resumos da compra</Text>
@@ -97,7 +111,7 @@ export default function Carrinho() {
               <Flex direction="row" justify="between">
 
               <Text>Desconto</Text>
-              <Text className='text-[14px]'>R${precoTotal}</Text>
+              <Text className='text-[14px]'>R${(Number(precoTotal) *0.97).toFixed(2)}</Text>
               </Flex>
 
               <Flex direction="row" justify="between">

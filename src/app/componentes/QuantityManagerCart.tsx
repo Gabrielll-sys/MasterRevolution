@@ -8,12 +8,13 @@ import IconMinusSquare from "../assets/icons/IconMinusSquare";
 type QuantityManagerCartProps = {
 
   quantidade:number,
-  produtoId:number | undefined
+  produtoId:number | undefined,
+  recalcularTotal:(quantidade:number)=>void
 
 }
 
 
-export default function QuantityManagerCart({quantidade,produtoId}:QuantityManagerCartProps) {
+export default function QuantityManagerCart({quantidade,produtoId,recalcularTotal}:QuantityManagerCartProps) {
 
 
   const [quantidadeProduto, setQuantidadeProduto] = useState<number>(quantidade);
@@ -34,21 +35,16 @@ export default function QuantityManagerCart({quantidade,produtoId}:QuantityManag
     if(quantidadeProduto == 1) newQuantity = 1
    }
 
-    
-    // Update the quantity and save to local storage
-    itemExistente.quantidade = newQuantity;
-    localStorage.setItem("cartItens", JSON.stringify(arrItens));
-    console.log(itemExistente.quantidade);
+   
+   // Update the quantity and save to local storage
+   itemExistente.quantidade = newQuantity;
+   localStorage.setItem("cartItens", JSON.stringify(arrItens));
+   console.log(itemExistente.quantidade);
+   recalcularTotal(newQuantity)
     setQuantidadeProduto(itemExistente.quantidade); 
 };
 
-const handleIncreaseQuantity = () => {
-    updateItemQuantity('aumentar');
-};
 
-const handleDecreaseQuantity = () => {
-    updateItemQuantity('diminuir');
-};
 
 
   return (
