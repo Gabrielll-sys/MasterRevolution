@@ -2,7 +2,7 @@
 
 import React, { useContext, useState } from "react";
 import { Card, CardBody, CardFooter} from "@nextui-org/react";
-import Link from "next/link";
+import { Text } from "@radix-ui/themes";
 import Image from "next/image";
 import imagem from "../assets/disjuntor-bipolar.jpg";
 import IProduto from "@/interfaces/IProduto";
@@ -53,6 +53,7 @@ const handleChangeRouteToProductPage = ()=>{
                 alt="Card background"
                 height={220}
                 width={220}
+                loading="lazy"
                 className="z-0 transition-transform"
                 src={imagem}
                
@@ -60,9 +61,9 @@ const handleChangeRouteToProductPage = ()=>{
             </div>
             <CardFooter className="px-0">
               <div className="flex flex-col justify-center items-center gap-4">
-                <p className="w-full text-center">
+                <Text className="w-full text-center text-sm ">
                   {produtoCard?.descricao} {produtoCard?.marca}
-                </p>
+                </Text>
                 {produtoCard?.precoVenda != null ? (
                   <Flex direction="column" gap="3">
                     <p className="font-semibold text-center font-quicksand text-sm max-sm:text-[14px]">

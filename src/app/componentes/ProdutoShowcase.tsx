@@ -28,8 +28,8 @@ type ProdutoCardProps =  {
     const [openSnackBar, setOpenSnackBar] = useState<boolean>(false);
     const [messageAlert, setMessageAlert] = useState<string>("");
     const [severidadeAlert, setSeveridadeAlert] = useState<AlertColor>();
-    const [quantidade, setQuantidade] = useState<number>(0);
-
+    const [quantidade, setQuantidade] = useState<number>(1);
+    const url = "http://localhost:3000"
 
   
 
@@ -59,7 +59,7 @@ type ProdutoCardProps =  {
 
  
     const chamarWhatsAppComDescricaoDoProduto = ()=>{
-            const mensagem = ` Olá ${getPeriodoDia()}, me interessei pelo produto: ${pathname} `
+            const mensagem = ` Olá ${getPeriodoDia()}, me interessei pelo produto:${url}${pathname} `
         router.push(
         
         `https://api.whatsapp.com/send?phone=71103718&text=${mensagem}`
@@ -84,7 +84,7 @@ const getPeriodoDia = ()=>{
 
     const now = new Date();
     const hour = now.getHours();
-    console.log(hour)
+
     if (hour >= 6 && hour < 12) {
       return "Bom Dia";
     } else if (hour >= 12 && hour < 18) {
@@ -100,7 +100,7 @@ const getPeriodoDia = ()=>{
         <>
       <Flex justify="center" direction="row" gap='8' className="mt-10"  >
 
-      <Image alt="Card background" width={320} height={320} className={` transition-transform `} src={imagem} />
+      <Image alt="Card background" loading="lazy" width={320} height={320} className={` transition-transform `} src={imagem} />
       
         <div className="flex flex-col gap-12 w-[400px]">
         

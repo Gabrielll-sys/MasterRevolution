@@ -44,7 +44,7 @@ const calcularPrecoTotal = (quantidade:number)=>{
   return (
     <Flex direction="row" gapX="7" justify="center">
         <Card className=' h-[150px] w-[150px] border-none border-white bg-none'>
-        <Image   alt="Card background" className={` transition-transform object-cover w-full h-full   `} fill  src={imagem} />
+        <Image   alt="Card background" className={` transition-transform object-cover w-full h-full   `} fill loading='lazy' src={imagem} />
 
         </Card>
 
