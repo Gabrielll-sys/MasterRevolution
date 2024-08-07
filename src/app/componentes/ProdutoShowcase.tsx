@@ -98,37 +98,37 @@ const getPeriodoDia = ()=>{
     
     return(
         <>
-      <Flex justify="center" direction="row" gap='8' className="mt-10"  >
+      <Flex justify="center" direction="row" gap='8' className="mt-10 "  >
 
-      <Image alt="Card background" loading="lazy" width={320} height={320} className={` transition-transform `} src={imagem} />
+      <Image alt="Card background" loading="lazy"  className={` transition-transform max-sm:w-[150px] max-sm:h-[150px] w-[250px] h-[250px] `} src={imagem} />
       
-        <div className="flex flex-col gap-12 w-[400px]">
+        <div className="flex flex-col gap-12 w-[400px] border-1 border-grayLine p-5 ">
         
 
-        <Text className="font-bold"> <Skeleton loading={!produto?.descricao}>{produto?.descricao} </Skeleton> </Text>
+        <Text className="font-bold" size="1" > <Skeleton loading={!produto?.descricao}>{produto?.descricao} </Skeleton> </Text>
         
 
 
-        <div className="flex flex-row justify-between ">
+        <div className="flex flex-row max-sm:w-[200px] justify-between ">
 
         <div className="flex flex-col gap-2">
             
-        <p  className="text-2xl text-[#32BCAD] font-quicksand"> <IconPix height="18" width="18" />R${produto?.precoVenda?.toFixed(2).toString().replace(".", ",")}</p>
-        <p className="text-[12px] ">PREÇO A VISTA</p>
+        <Text  className="max-sm:text-[12px] text-[#32BCAD] font-quicksand"> <IconPix height="18" width="18" />R${produto?.precoVenda?.toFixed(2).toString().replace(".", ",")}</Text>
+        <Text className="text-[12px] ">PREÇO A VISTA</Text>
         </div>
 
         <div className="flex flex-col gap-2">
             
-        <p  className="text-2xl"><IconCreditCard2Back height="18" width="18"/>R$20,00</p>
-        <p className="text-[12px]">EM ATE <strong>5x</strong> SEM JUROS</p>
+        <Text  className="max-sm:text-[12px]"><IconCreditCard2Back  height="18" width="18" />R$20,00</Text>
+        <Text className="text-[12px]">EM ATE <strong>5x</strong> SEM JUROS</Text>
         </div>
 
 
         </div>
 
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-8 ">
 
-            <div className="flex flex-row w-full justify-between">
+            <div className="flex flex-row w-full justify-between flex-wrap max-sm:gap-7 ">
 
               <Flex gap="5" className="flex items-center gap-5 border-1 border-grayLine rounded-md p-1 h-[40px] w-[132px]  ">
             <Button
@@ -152,18 +152,18 @@ const getPeriodoDia = ()=>{
               <IconPlusSquare color="black" />
             </Button>
           </Flex>
-                <Button className="bg-[#1DB954] text-white text-[16px] p-6 rounded-md" onClick={handleStorageProductCart}>
+                <Button className="bg-[#1DB954] text-white text-[16px] max-sm:w-[180px] p-6 rounded-md" onClick={handleStorageProductCart}>
                     Adicionar ao Carrinho
                 </Button>
             </div>
-              <div className="cursor-pointer" onClick={()=>chamarWhatsAppComDescricaoDoProduto}>
-                  
-              <Button onPress={chamarWhatsAppComDescricaoDoProduto} startContent={<IconWhatsapp width={"1.4em"} height={"1.4em"} color="green" />} className="bg-transparent p-6 rounded-md  border-1 border-green text-[18px]  text-green">
+              <Button onPress={chamarWhatsAppComDescricaoDoProduto} startContent={<IconWhatsapp width={"1.4em"} height={"1.4em"} color="green" />} className="bg-transparent p-6 rounded-md  border-1 border-green max-sm:text-[16px] max-sm:w-[180px] text-[18px]  text-green">
                         Falar com atendente
               </Button>
+              
+                  
                  
            
-              </div>
+            
                 
         </div>
         </div>

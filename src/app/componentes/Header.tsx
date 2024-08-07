@@ -1,7 +1,4 @@
 "use client"
-
-
-
 import Image from "next/image";
 import IconBag from "../assets/icons/IconBag";
 import { useContext, useEffect, useState } from "react";
@@ -53,7 +50,7 @@ console.log(path)
         <div className="flex flex-row w-[80%] items-center justify-center gap-16">
           <div className=" flex flex-row justify-between" >
             <Link href="/">
-              <Image  className="py-5 hover:scale-30 max-sm:mt-1 max-sm:w-[100px] max-sm:h-[80px] w-[180px] h-[155px]" src={require('../assets/logo-master-store.png')}alt="logo master" />
+              <Image  className="py-5 hover:scale-30 max-sm:mt-1 max-sm:w-[150px] max-sm:h-[100px] w-[180px] h-[155px]" src={require('../assets/logo-master-store.png')}alt="logo master" />
             </Link>
           </div>
           <TextField.Root placeholder="Faça um pesquisa…" size="3"  className="w-[600px]" variant="classic" onKeyDown={handleKeyDown} value={descricaoProduto} onChange={(x)=>setDescricaoProduto(x.target.value)}>

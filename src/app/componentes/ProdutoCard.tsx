@@ -47,19 +47,19 @@ const handleChangeRouteToProductPage = ()=>{
           onPress={handleChangeRouteToProductPage}
           style={{ width: "320px", height: "370px" }}
         >
-          <CardBody className="flex flex-col overflow-hidden relative p-0 m-0">
+          <CardBody className="flex flex-col overflow-hidden ">
             <div className="text-center align-middle items-center flex justify-center overflow-hidden h-[300px] w-[100%] max-sm:w-[50%] max-sm:h-[200px]">
               <Image
                 alt="Card background"
                 height={220}
                 width={220}
                 loading="lazy"
-                className="z-0 transition-transform"
+                className=" mx-auto "
                 src={imagem}
                
               />
             </div>
-            <CardFooter className="px-0">
+            <CardFooter>
               <div className="flex flex-col justify-center items-center gap-4">
                 <Text className="w-full text-center text-sm ">
                   {produtoCard?.descricao} {produtoCard?.marca}

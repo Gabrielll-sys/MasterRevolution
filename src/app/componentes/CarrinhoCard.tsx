@@ -42,16 +42,21 @@ const calcularPrecoTotal = (quantidade:number)=>{
   
   
   return (
-    <Flex direction="row" gapX="7" justify="center">
-        <Card className=' h-[150px] w-[150px] border-none border-white bg-none'>
+    <Flex direction="row" gapX="7" wrap="wrap" justify="center">
+        <Card className=' max-sm:h-[100px] max-sm:w-[100px] h-[150px] w-[150px]  border-none border-white '>
         <Image   alt="Card background" className={` transition-transform object-cover w-full h-full   `} fill loading='lazy' src={imagem} />
 
         </Card>
 
-    <Text className='max-w-[230px]'>{produto.descricao}</Text>
+    <Text className='max-w-[230px]' size={
+      {sm:"1",
+        md:"3"
+      }
+      
+      } >{produto.descricao}</Text>
         <QuantityManagerCart produtoId={produto.id} quantidade={produto.quantidade} recalcularTotal={calcularPrecoTotal} />
 
-        <Flex direction="column" gapY="4" minWidth="300px">
+        <Flex direction="column" wrap="wrap" gapY="4" minWidth="300px">
 
           <Flex direction="row" gap='6' justify="end">
           <Text>Preço Unitário:</Text>

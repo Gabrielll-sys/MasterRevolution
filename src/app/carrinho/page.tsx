@@ -19,14 +19,7 @@ export default function Carrinho() {
     const [severidadeAlert, setSeveridadeAlert] = useState<AlertColor>();
     const [precoTotal,setPrecoTotal] = useState("0")
     const route = useRouter()
-    useEffect(()=>{
-      
-      
-      const arrItens = JSON.parse(localStorage.getItem("cartItens") || "[]");
-      console.log(arrItens)
-
-    },[])
-
+ 
     const {data:produtosCarrinho,refetch:refetchProdutoCarrinho}= useQuery<IProduto[]>({
       queryKey:['carrinho'],
       queryFn:async()=>{
@@ -71,7 +64,7 @@ export default function Carrinho() {
 
     produtos.forEach(produto => {
       if(produto.precoVenda!= undefined && produto.precoVenda!=null){
-
+        //@ts-ignore
         total+=(produto?.precoVenda * produto.quantidade)
       }
     });
@@ -92,7 +85,7 @@ export default function Carrinho() {
     produtoCarrinhoUsuario.forEach(produto=>{
       message += ` %0a- ${produto.quantidade} ${
         produto.quantidade > 1 ? `Unidades` : `Unidade`
-      } de ${produto.descricao}, cada unidade custando R$ ${produto.precoVenda.toFixed(2)}.`;
+      } de ${produto.descricao}, cada unidade custando R$ ${produto?.precoVenda?.toFixed(2)}.`;
     });
     
     console.log(message)
@@ -111,10 +104,10 @@ export default function Carrinho() {
     return (
       <>
           {produtosCarrinho?.length ? (
-   <Flex direction={{
-    sm: 'column',  // Para telas pequenas
-    md: 'row',       // Para telas médias e maiores
-  }} gapX="3" justify="center" my="7" mx=""  >
+        <Flex direction={{
+          sm: 'column',  // Para telas pequenas
+          md: 'row',       // Para telas médias e maiores
+        }} gapX="3" justify="center" my="7" wrap="wrap"  >
   
    <Flex direction="column" width="90vw" justify="center" gap="6">
 
